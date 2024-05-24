@@ -4,4 +4,4 @@ The application consists of a simple form where user inputs their details, detai
 
 No Node framework used in this project.
 
-[Live link (Render):](https://form-validation-6o8l.onrender.com/)
+You can check it out here: [Live link (Render)](https://form-validation-6o8l.onrender.com/)

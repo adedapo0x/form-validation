@@ -2,6 +2,8 @@ const http = require('node:http')
 const fs = require('fs')
 const querystring = require('querystring')
 
+const PORT = process.env.PORT || 3000
+
 const server = http.createServer((req, res) => {
     // Loads the HTML file using the fs module
     if (req.url === '/' && req.method === 'GET'){
@@ -39,5 +41,5 @@ const server = http.createServer((req, res) => {
    
 })
 
-server.listen(3500, () => console.log("Server running quite fine"))
+server.listen(PORT, () => console.log("Server running quite fine"))
 

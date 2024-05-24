@@ -2,7 +2,7 @@ const http = require('node:http')
 const fs = require('fs')
 const querystring = require('querystring')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3010
 
 const server = http.createServer((req, res) => {
     // Loads the HTML file using the fs module
@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
     }
     
 
-//    Handles POST request by submit button
+// Handles POST request by submit button
     else if (req.url === '/submit-form' && req.method === 'POST'){
         let body = ''
         req.on('data', chunk => {
@@ -30,10 +30,18 @@ const server = http.createServer((req, res) => {
                 }
                 db.push(formData) 
 
-                fs.writeFile(__dirname + '/db/database.json', JSON.stringify(db, null, 1), err => {
+                fs.writeFileSync(__dirname + '/db/database.json', JSON.stringify(db, null, 1), err => {
                     if (err) throw err
                 })
+
+                // To show application is functional, we load the contents of the form data written to 
+                // the database.json file back to the page
+
+                const jsonStream = fs.createReadStream(__dirname + '/db/database.json', 'utf8')
+                jsonStream.pipe(res)
             })
+
+            
         })   
 
     }
